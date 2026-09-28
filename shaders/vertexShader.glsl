@@ -52,7 +52,7 @@ void main() {
 	// #include <shadowmap_vertex>
 
 	vUv = uv;
-	vUv2 = uv2;
+	vUv2 = uv1;
 
 	vec4 modelPosition = modelMatrix * vec4(transformed, 1.0);
 	vViewPos = viewMatrix * modelPosition;

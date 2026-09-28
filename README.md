@@ -1,3 +1,6 @@
+## A more Readable version of the demo
+
+
 I wanted an anime-style shader that runs on the web but couldn't find one anywhere... So I wrote my own :P
 
 <p align="center"><img width="882" height="498" alt="Anime-Style Shading of 3D Models (Three.js / GLSL)" src="https://github.com/user-attachments/assets/3c42ec11-8031-409d-94ee-3580229a30f0" /></p>
