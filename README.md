@@ -1,4 +1,4 @@
-## A more Readable version of the demo
+### A more Readable version of the demo
 
 
 I wanted an anime-style shader that runs on the web but couldn't find one anywhere... So I wrote my own :P

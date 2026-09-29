@@ -193,6 +193,7 @@ class App {
     this.lastBlink = 0;
     this.blinkInterval = 0;
   }
+  
   resolveChars() {
     for (const [ name, charConfig ] of Object.entries(this.CHARS)) {
       const parts = name.split("_");
@@ -701,7 +702,10 @@ class App {
         uniforms: Object.assign(Object.assign({}, THREE.UniformsLib.lights), uniforms),
         vertexShader: this.vertexShader,
         fragmentShader: this.fragmentShader,
-        defines: { USE_UV1: ''},
+        defines: {
+          USE_UV: '',
+          USE_UV2: ''
+        },
       });
 
       // Fur needs special settings
@@ -1157,7 +1161,7 @@ class App {
     this.vertexShader = await this.vertexShader.text();
     this.fragmentShader = await fetch(this.SHADERS_PATH + "fragmentShader.glsl");
     this.fragmentShader = await this.fragmentShader.text();
-    this.useThreeMat = true;
+    this.useThreeMat = false;
     await this.setupModel();
     this.postprocessing();
     this.renderer.compile(this.scene, this.camera);
@@ -1243,8 +1247,8 @@ class App {
       }
     }).bind(this));
 
-    // Optional: uncomment to handle window resize
-    // window.addEventListener("resize", () => this.onWindowResize(), false);
+    // Window Resize
+    window.addEventListener("resize", () => this.onWindowResize(), false);
   }
 
   setupMouseDown() {
