@@ -1181,10 +1181,10 @@ class App {
       0.275, 0.95, 0.4
     );
     this.bloomPass.renderToScreen = false;
-    //this.composer.addPass(this.bloomPass);
+    this.composer.addPass(this.bloomPass);
     const smaaPass = new SMAAPass();
     smaaPass.renderToScreen = true;
-    //this.composer.addPass(smaaPass);
+    this.composer.addPass(smaaPass);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
   }
 
@@ -1796,7 +1796,6 @@ class App {
       this.inf[ this.dict.E_Close ] = 0;
     }
   }
-
 }
 
 document.body.style.setProperty("--spinner", Math.max(1.13, (1.13 / 1358) * window.innerWidth));
