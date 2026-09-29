@@ -10,17 +10,24 @@ import {
   BufferGeometryUtils
 } from "three/addons";
 
+// Makes Sure Textures aren't loaded by FBXLoader
+class NewFBXLoader extends FBXLoader{
+  loadTexture(_,__) {
+    return new Texture();
+  }
+}
+
 class App {
   constructor() {
     this.loadingScreen = document.getElementById("loading-screen");
 
     this.DIR_LIGHT_RADIUS = 100;
     this.DIR_LIGHT_INTENSITY = 0.4;
-    this.MODELS_PATH = "./assets/models/";
-    this.TEXTURES_PATH = "./assets/models/textures/";
-    this.SHADERS_PATH = "./shaders/";
-    this.POSES_PATH = "./assets/models/poses/";
-    this.VOICES_PATH = "./assets/voicelines/";
+    this.MODELS_PATH = "https://zaneatega.github.io/Three-js-Anime-Shader/assets/models/";
+    this.TEXTURES_PATH = "https://zaneatega.github.io/Three-js-Anime-Shader/assets/models/textures/";
+    this.SHADERS_PATH = "shaders/";
+    this.POSES_PATH = "https://zaneatega.github.io/Three-js-Anime-Shader/assets/models/poses/";
+    this.VOICES_PATH = "https://zaneatega.github.io/Three-js-Anime-Shader/assets/voicelines/";
     this.CHARS = {
       Iuno: {
         msg: "Tap me, please?",
@@ -408,7 +415,7 @@ class App {
     this.scene.add(this.camera);
 
     // Create renderer
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer = new THREE.WebGLRenderer({ alpha: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight, false);
     this.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -804,7 +811,7 @@ class App {
 
     // Initialize FBX loader
     if (!this.fbxLoader) {
-      this.fbxLoader = new FBXLoader();
+      this.fbxLoader = new NewFBXLoader();
     }
 
     // Load 3D model
