@@ -812,7 +812,7 @@ class App {
       this.fbxLoader.load(
         `${this.MODELS_PATH}${this.charName}.fbx`,
         model => resolve(model),
-        xhr=>{console.info((xhr.loaded / xhr.total * 100) + '% loaded')},
+        undefined,
         error => reject(error)
       );
     });
@@ -927,7 +927,7 @@ class App {
     this.scene.add(this.hitbox);
 
     // Create outline clone for character edges
-    await this.createOutlineClone();
+    this.createOutlineClone();
 
     // Initialize mouse following if requested
     if (initMouseFollow) {
@@ -936,7 +936,7 @@ class App {
 
     // Play intro voiceline if not using simplified materials
     if (!this.useThreeMat) {
-      this.setupMouseDown.playVoiceline(true, true);
+      this.setupMouseDown.playVoiceline?.(true, true);
     }
   }
 
@@ -1144,7 +1144,7 @@ class App {
     this.hitbox.visible = true;
     this.clone.visible = !this.useThreeMat;
 
-    if (!this.useThreeMat) {
+    if (!this.useThreeMat && this.setupMouseDown.playVoiceline) {
       this.setupMouseDown.playVoiceline(true, true);
     }
 
