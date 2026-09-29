@@ -410,7 +410,7 @@ class App {
     // Create renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight, false);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(window.devicePixelRatio);
 
     // Get canvas and insert into DOM
     this.canvas = this.renderer.domElement;
